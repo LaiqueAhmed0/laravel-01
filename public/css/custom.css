@@ -1,0 +1,27 @@
+@media screen and (max-width: 657px) {
+	 .card-row--order .col-sm:first-child, .card-row--retailers .col-sm:first-child {
+		 padding-left: 0 !important;
+	}
+	 .card-row--order .col-sm:last-child, .card-row--retailers .col-sm:last-child {
+		 padding-right: 0 !important;
+	}
+	 .card-row--order .col-sm, .card-row--retailers .col-sm {
+		 padding: 0 !important;
+		 margin-bottom: 10px;
+	}
+	 .card-row--order .card, .card-row--retailers .card {
+		 height: 100%;
+	}
+}
+ @media screen and (min-width: 657px) {
+	 .card-row--order .col-sm, .card-row--retailers .col-sm {
+		 margin: 0 0 15px 0 !important;
+	}
+	 .card-row--order .card, .card-row--retailers .card {
+		 height: 100%;
+	}
+	 .card-row--retailers .col-sm:nth-child(3), .card-row--retailers .col-sm:nth-child(4) {
+		 margin-bottom: 0px !important;
+	}
+}
+

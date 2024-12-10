@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <meta charset="utf-8"/>
+    <title>Mobile Data Top Up | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--begin::Fonts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!--end::Fonts -->
+
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="/css/login/login-6.css" rel="stylesheet" type="text/css"/>
+
+    <!--end::Page Custom Styles -->
+
+    <!--begin:: Global Mandatory Vendors -->
+    <link href="/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css"/>
+
+    <!--end:: Global Optional Vendors -->
+
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+
+    <!--end::Global Theme Styles -->
+
+    <!--begin::Layout Skins(used by all pages) -->
+    <link href="/css/skins/header/base/light.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/skins/header/menu/light.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/skins/brand/dark.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/skins/aside/dark.css" rel="stylesheet" type="text/css"/>
+
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="/media/favicon-square.png"/>
+</head>
+
+<!-- end::Head -->
+
+<!-- begin::Body -->
+<body class="kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+
+<style>
+
+    .kt-login.kt-login--v6 .kt-login__aside .kt-login__wrapper .kt-login__container .kt-login__form #register .form-control,
+    .kt-login.kt-login--v6 .kt-login__aside .kt-login__wrapper .kt-login__container .kt-login__form #login .form-control,
+    .kt-login.kt-login--v6 .kt-login__aside .kt-login__wrapper .kt-login__container .kt-login__form #forgot .form-control {
+        display: block;
+        margin-bottom: 15px;
+        width: 100%;
+        height: calc(1.5em + 1.3rem + 2px);
+        padding: 0.65rem 1rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #e2e5ec;
+        border-radius: 4px;
+        -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    }
+    
+    
+    @media only screen and (max-width: 1024px) and (min-width: 300px) {
+        #top-image {
+            display:flex !important;
+        }
+        
+        #bottom-image {
+            display:none;
+        }
+    }
+
+</style>
+
+<!-- begin:: Page -->
+<div class="kt-grid kt-grid--ver kt-grid--root">
+    <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v6 kt-login--signin" id="kt_login">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--desktop kt-grid--ver-desktop kt-grid--hor-tablet-and-mobile">
+            <div id="top-image" class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content" style="display:none; background-image: url(/media/guy-on-phone-2.jpg);background-position: right;">
+                <div class="kt-login__section">
+                    <div class="kt-login__block" style="background: rgba(0,0,0,.5); margin:10px; padding:20px;">
+                        <h3 class="kt-login__title">Access your usage today</h3>
+                        <div class="kt-login__desc">
+                            You can monitor live data usage, set alerts,<br>load instant or auto top ups.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-grid__item  kt-grid__item--order-tablet-and-mobile-2  kt-grid kt-grid--hor kt-login__aside">
+                <div class="kt-login__wrapper">
+                    <div class="kt-login__container" style="width:100%">
+                        <div class="kt-login__body">
+                            <div class="kt-login__logo">
+                                <a href="https://lovemobiledata.com">
+                                    <img style="width: 250px;" src="/media/mobile-data-top-up-logo-stacked.png">
+                                </a>
+                            </div>
+                            <div class="kt-login__signin">
+                                <div class="kt-login__head">
+                                    <h3 class="kt-login__title">Sign In</h3>
+                                </div>
+                                <div class="kt-login__form">
+                                    <form class="kt-form" id="login" action="{{route('login')}}" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label class="form-control-label">Email * </label>
+                                            <input class="form-control" type="text" placeholder="Email" name="email" autocomplete="off">
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Password * </label>
+                                            <input class="form-control form-control-last" type="password" placeholder="Password" name="password">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert" style="display: block">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="kt-login__extra">
+                                            <label class="kt-checkbox">
+                                                <input type="checkbox" name="remember"> Remember me
+                                                <span></span>
+                                            </label>
+                                            <a href="javascript:;" id="kt_login_forgot">Forget Password ?</a>
+                                        </div>
+                                        <div class="kt-login__actions">
+                                            <button type="submit" class="btn btn-brand btn-pill btn-elevate">Sign In</button>
+                                            {{--<a href="javascript:;" id="kt_login_signup" class="kt-login__account-link">Sign Up!</a>--}}
+                                            <a href="javascript:;" id="kt_login_signup" style="line-height: 26px;" class="btn btn-outline-brand btn-pill">Register</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="kt-login__signup">
+                                <div class="kt-login__head">
+                                    <h3 class="kt-login__title">Sign Up</h3>
+                                    <div class="kt-login__desc">Enter your details to create your account:</div>
+                                </div>
+                                <div class="kt-login__form">
+                                    <form class="kt-form" method="POST" action="{{ route('register') }}" id="register">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label class="form-control-label">First Name * </label>
+                                            <input class="form-control" type="text" placeholder="First Name" name="first_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Last Name * </label>
+                                            <input class="form-control" type="text" required placeholder="Last Name" name="last_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Email *</label>
+                                            <input class="form-control" type="text" placeholder="Email" name="email" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Password *</label>
+                                            <input class="form-control" type="password" placeholder="Password" name="password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Confirm Password *</label>
+                                            <input class="form-control form-control-last" type="password" placeholder="Confirm Password" name="password_confirmation">
+                                        </div>
+                                        <div class="kt-login__extra">
+                                            <label class="kt-checkbox">
+                                                <input type="checkbox" name="agree" required> I Agree to the love mobile data <a target="_blank" href="https://lovemobiledata.com/terms-and-conditions/">terms and conditions</a>.
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <div class="kt-login__actions">
+                                            <button type="submit" class="btn btn-brand btn-pill btn-elevate">Sign Up</button>
+                                            <button id="kt_login_signup_cancel" class="btn btn-outline-brand btn-pill">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="kt-login__forgot">
+                                <div class="kt-login__head">
+                                    <h3 class="kt-login__title">Forgotten Password ?</h3>
+                                    <div class="kt-login__desc">Enter your email to reset your password:</div>
+                                </div>
+                                <div class="kt-login__form">
+                                    <form class="kt-form" id="forgot" method="post" action="{{ route('password.email') }}">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label class="form-control-label">Email *</label>
+                                            <input class="form-control" type="text" placeholder="Email" name="email" id="kt_email" autocomplete="off">
+                                        </div>
+                                        <div class="kt-login__actions">
+                                            <button type="submit" class="btn btn-brand btn-pill btn-elevate">Request</button>
+                                            <button id="kt_login_forgot_cancel" class="btn btn-outline-brand btn-pill">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-image" class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content" style="background-image: url(/media/guy-on-phone-2.jpg);background-position: right;">
+                <div class="kt-login__section">
+                    <div class="kt-login__block" style="background: rgba(0,0,0,.5); margin:10px; padding:20px;">
+                        <h3 class="kt-login__title">Access your usage today</h3>
+                        <div class="kt-login__desc">
+                            You can monitor live data usage, set alerts,<br>load instant or auto top ups.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end:: Page -->
+
+
+<!-- begin::Global Config(global config for global JS sciprts) -->
+<script>
+    var KTAppOptions = {
+        "colors": {
+            "state": {
+                "brand": "#5d78ff",
+                "dark": "#282a3c",
+                "light": "#ffffff",
+                "primary": "#5867dd",
+                "success": "#34bfa3",
+                "info": "#36a3f7",
+                "warning": "#ffb822",
+                "danger": "#fd3995"
+            },
+            "base": {
+                "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+            }
+        }
+    };
+</script>
+
+<!-- end::Global Config -->
+<script src="/vendors/global/vendors.bundle.min.js" type="text/javascript"></script>
+<!--end:: Global Optional Vendors -->
+
+<!--begin::Global Theme Bundle(used by all pages) -->
+<script src="/js/scripts.bundle.js" type="text/javascript"></script>
+
+<!--end::Global Theme Bundle -->
+
+<!--begin::Page Scripts(used by this page) -->
+<script src="/js/pages/login/login-general.js" type="text/javascript"></script>
+
+
+<script>
+    var hash = location.hash;
+
+    if (hash == '#register') {
+        KTLoginGeneral.hashRegister();
+    }
+</script>
+
+<!--end::Page Scripts -->
+</body>
+
+<!-- end::Body -->
+</html>
